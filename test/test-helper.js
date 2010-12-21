@@ -18,5 +18,10 @@ Assertion.prototype.call = function(method, timeout) {
 
 test = function(name, testFn) {
   testFn()
+  process.stdout.write('.')
 }
+
+process.on('exit', function() {
+  console.log();
+});
 
