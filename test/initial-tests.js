@@ -85,3 +85,32 @@ test('multiple actions', function() {
   })
 
 })
+
+test('action setup', function() {
+  test('not passing setup arg to following contexts', function() {
+    var boom = 0;
+    var bm = bench({
+      repeat: 10,
+      actions:[{
+        name: 'boom',
+        setup: function(next) {
+          next(++boom)
+        },
+        run: function(context, next) {
+          context.should.equal(1)
+          next()
+        },
+        teardown: function(context, next) {
+          arg.should.equal(1)
+          next()
+        }
+      }]
+    })
+    bm(should.call(function() {
+      test('executes', function() {
+        boom.should.equal(1)
+      })
+
+    }))
+  })
+})
