@@ -39,6 +39,48 @@ test('multiple itterations', function() {
       ran.should.equal(3)
     }))
   })
-
 })
 
+test('multiple actions', function() {
+  test('with multiple itteration', function() {
+    var oneCalled = 0
+    var twoCalled = 0
+    var threeCalled = 0
+    var benchmark = bencher.bench({
+      actions:[{
+        name: 'calling 1',
+        run: function(next) {
+          oneCalled++
+          next()
+        }
+      },{
+        name: 'calling 2',
+        run: function(next) {
+          twoCalled++
+          next()
+        }
+      },{
+        name: 'calling 3',
+        run: function(next) {
+          threeCalled++
+          next()
+        }
+      }]
+    })
+    benchmark(should.call(function() {
+      test('calls first', function() {
+        oneCalled.should.equal(3)
+      })
+      
+      test('calls second', function() {
+        twoCalled.should.equal(3)
+      })
+
+      test('calls third', function() {
+        threeCalled.should.equal(3)
+      })
+      
+    }))
+  })
+
+})
