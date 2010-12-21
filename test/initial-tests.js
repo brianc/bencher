@@ -47,6 +47,7 @@ test('multiple actions', function() {
     var twoCalled = 0
     var threeCalled = 0
     var benchmark = bencher.bench({
+      repeat: 3,
       actions:[{
         name: 'calling 1',
         run: function(next) {
@@ -71,7 +72,7 @@ test('multiple actions', function() {
       test('calls first', function() {
         oneCalled.should.equal(3)
       })
-      
+
       test('calls second', function() {
         twoCalled.should.equal(3)
       })
@@ -79,7 +80,7 @@ test('multiple actions', function() {
       test('calls third', function() {
         threeCalled.should.equal(3)
       })
-      
+
     }))
   })
 
