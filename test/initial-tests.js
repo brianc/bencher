@@ -100,10 +100,10 @@ test('action setup', function() {
           context.should.equal(1)
           next()
         },
-        teardown: function(context, next) {
+        teardown: should.call(function(context, next) {
           arg.should.equal(1)
           next()
-        }
+        })
       }]
     })
     bm(should.call(function() {
