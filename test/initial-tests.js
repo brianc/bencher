@@ -4,6 +4,7 @@ var bencher = require(__dirname + '/../lib');
 test('simplest thing ever',function() {
   var ran = 0;
   var benchmark = bencher.bench({
+    repeat: 1,
     actions:[{
       name: 'first',
       run: function(next) {
@@ -22,9 +23,11 @@ test('simplest thing ever',function() {
 test('multiple itterations', function() {
   var ran = 0;
   var benchmark = bencher.bench({
+    repeat: 3,
     actions:[{
       name: 'multiple',
       run: function(next) {
+        console.log("ran: %d", ran);
         ran++;
         next();
       }
