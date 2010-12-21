@@ -2,19 +2,20 @@ var helper = require(__dirname + '/test-helper');
 var bencher = require(__dirname + '/../lib');
 
 test('simplest thing ever',function() {
-  var ran = false;
+  var ran = 0;
   var benchmark = bencher.bench({
+    repeat: 3
     actions:[{
       name: 'first',
       run: function(next) {
-        ran = true;
+        ran++;
         next();
       }
     }]
   })
   test('execues', function() {
     benchmark(should.call(function() {
-      ran.should.equal(true)
+      ran.should.equal(3)
     }))
   })
 })
