@@ -101,7 +101,7 @@ test('action setup', function() {
           next()
         },
         teardown: should.call(function(context, next) {
-          arg.should.equal(1)
+          context.should.equal(1)
           next()
         })
       }]
