@@ -1,7 +1,7 @@
 var helper = require(__dirname + '/test-helper');
 var bencher = require(__dirname + '/../lib');
 
-test('simplest thing ever',function() {
+test('single repeat',function() {
   var ran = 0;
   var benchmark = bencher.bench({
     repeat: 1,
@@ -18,6 +18,7 @@ test('simplest thing ever',function() {
       ran.should.equal(1)
     }))
   })
+
 })
 
 test('multiple itterations', function() {
