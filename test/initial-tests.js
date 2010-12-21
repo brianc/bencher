@@ -1,9 +1,9 @@
 var helper = require(__dirname + '/test-helper');
-var bencher = require(__dirname + '/../lib');
+var bench = require(__dirname + '/../lib');
 
 test('single repeat',function() {
   var ran = 0;
-  var benchmark = bencher.bench({
+  var benchmark = bench({
     repeat: 1,
     actions:[{
       name: 'first',
@@ -23,7 +23,7 @@ test('single repeat',function() {
 
 test('multiple itterations', function() {
   var ran = 0;
-  var benchmark = bencher.bench({
+  var benchmark = bench({
     repeat: 3,
     actions:[{
       name: 'multiple',
@@ -46,7 +46,7 @@ test('multiple actions', function() {
     var oneCalled = 0
     var twoCalled = 0
     var threeCalled = 0
-    var benchmark = bencher.bench({
+    var benchmark = bench({
       repeat: 3,
       actions:[{
         name: 'calling 1',
