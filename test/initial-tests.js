@@ -28,7 +28,6 @@ test('multiple itterations', function() {
     actions:[{
       name: 'multiple',
       run: function(next) {
-        console.log("ran: %d", ran);
         ran++;
         next();
       }
