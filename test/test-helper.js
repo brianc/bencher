@@ -5,7 +5,7 @@ var assert = require('assert');
 
 Assertion.prototype.call = function(method, timeout) {
   var called = false
-  timeout = timeout || 100;
+  timeout = timeout || 10000;
   var id = setTimeout(function() {
     assert.ok(false, "Timeout wasn't called within " + timeout);
   }, timeout)

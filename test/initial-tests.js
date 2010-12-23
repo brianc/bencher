@@ -85,3 +85,34 @@ test('multiple actions', function() {
   })
 
 })
+
+var timeout = 10;
+var calls = 0;
+test('async actions', function() {
+  var bm = bench({
+    name: 'async bench',
+    repeat: 20,
+    actions:[{
+      name: 'first',
+      run: function(next) {
+        setTimeout(function() {
+          test('timeout', function() {
+            calls++;
+            next();
+          })
+        }, timeout+=5)
+      }
+    },{
+      name: 'second',
+      run: function(next) {
+        test('executed after first action', function() {
+          calls.should.be.greaterThan(19)
+        })
+        next();
+      }
+    }]
+  })
+  bm(should.call(function() {
+    calls.should.equal(20)
+  }))
+})
