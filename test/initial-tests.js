@@ -87,30 +87,53 @@ test('multiple actions', function() {
 })
 
 test('action setup', function() {
-  test('not passing setup arg to following contexts', function() {
-    var boom = 0;
-    var bm = bench({
-      repeat: 10,
-      actions:[{
-        name: 'boom',
-        setup: function(next) {
-          next(++boom)
-        },
-        run: function(context, next) {
-          context.should.equal(1)
-          next()
-        },
-        teardown: should.call(function(context, next) {
-          context.should.equal(1)
-          next()
-        })
-      }]
-    })
-    bm(should.call(function() {
-      test('executes', function() {
-        boom.should.equal(1)
+  var boom = 0;
+  var bm = bench({
+    repeat: 10,
+    actions:[{
+      name: 'boom',
+      setup: should.call(function(next) {
+        next(++boom)
+      }),
+      run: function(context, next) {
+        context.should.equal(1)
+        next()
+      },
+      teardown: should.call(function(context, next) {
+        context.should.equal(1)
+        next()
       })
-
-    }))
+    }]
   })
+  bm(should.call(function() {
+    test('executes', function() {
+      boom.should.equal(1)
+    })
+  }))
 })
+
+test('context setup', function() {
+  var boom = 0;
+  var bm = bench({
+    name: 'whatever',
+    repeat: 1,
+    setup: should.call(function(next) {
+      next(boom++)
+    }),
+    actions: [{
+      name: 'single action with no setup',
+      run: should.call(function(context, next) {
+        context.should.equal(1)
+        next()
+      })
+    }],
+    teardown: should.call(function(context, next) {
+      context.should.equal(1)
+      next()
+    })
+  })
+  bm(should.call(function() {
+    boom.should.equal(1)
+  }))
+})
+
