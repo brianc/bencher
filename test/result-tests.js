@@ -22,15 +22,21 @@ test('results', function() {
     result.actions.length.should.equal(2)
 
     test('first action',function() {
-      var firstAction = result.actions[0]
-      firstAction.name.should.equal('first')
-      firstAction.repeats.length.should.equal(10)
-      firstAction.repeats.forEach(function(repeat) {
-        repeat.start.should.be.instanceof(Date)
-        repeat.end.should.be.instanceof(Date)
+      var action = result.actions[0]
+      action.name.should.equal('first')
+      test('repeat data', function() {
+        action.repeats.length.should.equal(10)
+        action.repeats.forEach(function(repeat) {
+          repeat.start.should.be.instanceof(Date)
+          repeat.end.should.be.instanceof(Date)
+        })
       })
+      
+      test('rollup data', function() {
+        action.meanTime.should.be.within(9, 11)
+      })
+      
     })
-
   }))
 })
 
