@@ -100,7 +100,7 @@ test('async actions', function() {
             calls++;
             next();
           })
-        }, timeout+=5)
+        }, timeout+=1)
       }
     },{
       name: 'second',
