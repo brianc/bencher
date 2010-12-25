@@ -1,0 +1,13 @@
+{ "name": "bencher",
+  "version": "0.0.1",
+  "description": "Benchmarkin' library",
+  "homepage": "http://github.com/brianc/bencher",
+  "repository" : {
+    "type" : "git",
+    "url" : "git://github.com/brianc/bencher.git"
+  },
+  "author" : "Brian Carlson <brian.m.carlson@gmail.com>",
+  "main" : "./lib/index",
+  "directories" : { "lib" : "./lib" },
+  "engines" : { "node": ">= 0.2.2" }
+}
