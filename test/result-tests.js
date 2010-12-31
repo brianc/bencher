@@ -34,9 +34,13 @@ test('results', function() {
       
       test('rollup data', function() {
         action.meanTime.should.be.within(9, 11)
+        action.totalTime.should.be.within(90, 110)
       })
       
+      
     })
+
+    
   }))
 })
 
