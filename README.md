@@ -1,4 +1,4 @@
-Really easy to use benchmarking utility for async code execution. _Currently_ not a lot handled for you other than executing your code x number of times and providing the time it took to do so.
+Really easy to use benchmarking utility for async code execution in node.js. _Currently_ not a lot handled for you other than executing your code x number of times and providing the time it took to do so.  Used for benchmarks in [node-postgres](https://github.com/brianc/node-postgres).
 
 ## Example
 
